@@ -1,10 +1,10 @@
-package net.javaguides.bankingapp.service.impl;
+package net.javaguides.usuariosapp.service.impl;
 
-import net.javaguides.bankingapp.dto.UserDto;
-import net.javaguides.bankingapp.entity.User;
-import net.javaguides.bankingapp.mapper.UserMapper;
-import net.javaguides.bankingapp.repository.UserRepository;
-import net.javaguides.bankingapp.service.UserService;
+import net.javaguides.usuariosapp.dto.UserDto;
+import net.javaguides.usuariosapp.entity.User;
+import net.javaguides.usuariosapp.mapper.UserMapper;
+import net.javaguides.usuariosapp.repository.UserRepository;
+import net.javaguides.usuariosapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package net.javaguides.bankingapp;
+package net.javaguides.usuariosapp;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class BankingAppApplication {
+public class UsuariosAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BankingAppApplication.class, args);
+		SpringApplication.run(UsuariosAppApplication.class, args);
 	}
 
 	@Bean

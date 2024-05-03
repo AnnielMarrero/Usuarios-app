@@ -1,10 +1,10 @@
-package net.javaguides.bankingapp;
+package net.javaguides.usuariosapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BankingAppApplicationTests {
+class UsuariosAppApplicationTests {
 
 	@Test
 	void contextLoads() {

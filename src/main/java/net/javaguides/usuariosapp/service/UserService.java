@@ -1,6 +1,6 @@
-package net.javaguides.bankingapp.service;
+package net.javaguides.usuariosapp.service;
 
-import net.javaguides.bankingapp.dto.UserDto;
+import net.javaguides.usuariosapp.dto.UserDto;
 
 import java.util.List;
 import java.util.UUID;

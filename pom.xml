@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.javaguides</groupId>
-	<artifactId>banking-app</artifactId>
+	<artifactId>usuarios-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>banking-app</name>
+	<name>usuarios-app</name>
 	<description>Demo project for Spring Boot</description>
     <properties>
         <java.version>22</java.version>

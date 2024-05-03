@@ -1,13 +1,11 @@
-package net.javaguides.bankingapp.entity;
+package net.javaguides.usuariosapp.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.javaguides.bankingapp.dto.PhoneDto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -37,5 +35,5 @@ public class User {
     private String token;
     private boolean isActive;
 
-    public PhoneDto[] phones;
+    //public PhoneDto[] phones;
 }

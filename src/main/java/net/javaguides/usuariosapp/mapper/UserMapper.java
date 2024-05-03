@@ -1,7 +1,7 @@
-package net.javaguides.bankingapp.mapper;
+package net.javaguides.usuariosapp.mapper;
 
-import net.javaguides.bankingapp.dto.UserDto;
-import net.javaguides.bankingapp.entity.User;
+import net.javaguides.usuariosapp.dto.UserDto;
+import net.javaguides.usuariosapp.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

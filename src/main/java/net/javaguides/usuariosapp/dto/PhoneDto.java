@@ -1,4 +1,4 @@
-package net.javaguides.bankingapp.dto;
+package net.javaguides.usuariosapp.dto;
 
 import lombok.Data;
 

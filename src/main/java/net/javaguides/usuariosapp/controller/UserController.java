@@ -1,14 +1,13 @@
-package net.javaguides.bankingapp.controller;
+package net.javaguides.usuariosapp.controller;
 
 import jakarta.validation.Valid;
-import net.javaguides.bankingapp.dto.UserDto;
-import net.javaguides.bankingapp.service.UserService;
+import net.javaguides.usuariosapp.dto.UserDto;
+import net.javaguides.usuariosapp.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
