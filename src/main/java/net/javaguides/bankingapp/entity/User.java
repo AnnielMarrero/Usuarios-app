@@ -2,13 +2,16 @@ package net.javaguides.bankingapp.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.javaguides.bankingapp.dto.PhoneDto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
 
 @Getter
 @Setter
@@ -23,7 +26,6 @@ public class User {
     private UUID id;
 
     private String name;
-    @Email
     @Column(unique=true)
     private String email;
     private String password;
@@ -35,4 +37,5 @@ public class User {
     private String token;
     private boolean isActive;
 
+    public PhoneDto[] phones;
 }

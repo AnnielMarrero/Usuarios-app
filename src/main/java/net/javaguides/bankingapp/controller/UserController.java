@@ -1,5 +1,6 @@
 package net.javaguides.bankingapp.controller;
 
+import jakarta.validation.Valid;
 import net.javaguides.bankingapp.dto.UserDto;
 import net.javaguides.bankingapp.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,8 @@ public class UserController {
 
     //add user rest api
     @PostMapping
-    public ResponseEntity<UserDto> adduser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> adduser(@RequestBody @Valid UserDto userDto){
         return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.CREATED);
-
     }
 
     //get user rest api
