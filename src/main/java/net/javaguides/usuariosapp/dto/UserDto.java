@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -35,5 +36,5 @@ public class UserDto {
     private String token;
     private boolean isActive;
 
-    public PhoneDto [] phones;
+    public List<PhoneDto> phones;
 }

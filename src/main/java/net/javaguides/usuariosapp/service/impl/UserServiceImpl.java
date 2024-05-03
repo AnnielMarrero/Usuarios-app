@@ -1,9 +1,12 @@
 package net.javaguides.usuariosapp.service.impl;
 
+import net.javaguides.usuariosapp.dto.PhoneDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 import net.javaguides.usuariosapp.entity.User;
 import net.javaguides.usuariosapp.mapper.UserMapper;
+import net.javaguides.usuariosapp.repository.PhoneRepository;
 import net.javaguides.usuariosapp.repository.UserRepository;
+import net.javaguides.usuariosapp.service.PhoneService;
 import net.javaguides.usuariosapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,11 +21,16 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
+
     @Autowired
     private UserMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository) {
+
+    private PhoneService phoneService;
+
+    public UserServiceImpl(UserRepository userRepository, PhoneService phoneService) {
         this.userRepository = userRepository;
+        this.phoneService = phoneService;
     }
 
     @Override
@@ -39,34 +47,33 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.mapToUser(userDto);
         User savedUser = userRepository.save(user);
-        return userMapper.mapToUserDto(savedUser);
+
+        for (PhoneDto currPhone : userDto.phones)
+            currPhone.setUserId(savedUser.getId());
+
+        List<PhoneDto> phonesDto = phoneService.addRange(userDto.phones); //adding phones to that user
+        UserDto userSavedDto = userMapper.mapToUserDto(savedUser);
+        userSavedDto.phones = phonesDto;
+        return userSavedDto;
     }
 
     @Override
     public UserDto getUserById(UUID id) {
-        User User = userRepository
+        User user = userRepository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("User does not exists"));
 
-        return userMapper.mapToUserDto(User);
+        return userMapper.mapToUserDto(user);
     }
 
 
     @Override
     public List<UserDto> getAllUsers() {
-        List<User> Users = userRepository.findAll();
-        return Users.stream().map(userMapper::mapToUserDto)
+        List<User> users = userRepository.findAll();
+        return users.stream().map(userMapper::mapToUserDto)
                 .collect(Collectors.toList());
     }
-    /*
-    @Override
-    public void delete(Long id) {
-        User User = userRepository
-                .findById(id)
-                .orElseThrow(() -> new RuntimeException("User does not exists"));
-       userRepository.deleteById(id);
-    }
-    */
+
     public static String encodePassword(String plainPassword){
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(plainPassword);

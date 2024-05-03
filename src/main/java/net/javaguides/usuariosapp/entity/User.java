@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -35,5 +37,6 @@ public class User {
     private String token;
     private boolean isActive;
 
-    //public PhoneDto[] phones;
+    @OneToMany(mappedBy="user")
+    public Set<Phone> phones;
 }
