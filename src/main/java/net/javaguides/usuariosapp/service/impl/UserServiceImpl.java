@@ -48,8 +48,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.mapToUser(userDto);
         User savedUser = userRepository.save(user);
 
-        for (PhoneDto currPhone : userDto.phones)
-            currPhone.setUserId(savedUser.getId());
+        userDto.phones.forEach(currPhone -> currPhone.setUserId(savedUser.getId()));
 
         List<PhoneDto> phonesDto = phoneService.addRange(userDto.phones); //adding phones to that user
         UserDto userSavedDto = userMapper.mapToUserDto(savedUser);
