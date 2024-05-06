@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto createUser(UserDto userDto) {
         if(userRepository.findByEmail(userDto.getEmail()).isPresent())
-            throw new EmailExistsException("User's email exists");
+            throw new EmailExistsException("El correo ya registrado");
 
         userDto.setCreatedAt(LocalDateTime.now());
         userDto.setModifiedAt(LocalDateTime.now());
