@@ -3,6 +3,7 @@ package net.javaguides.usuariosapp.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class UserDto {
 
     @NotBlank(message = "Invalid password: Empty password")
     @NotNull(message = "Invalid password: Password is NULL")
-    //@Pattern(regexp = "^\\d{10}$", message = "Invalid password") //TODO pendiente validar: Una Mayuscula, letras minúsculas, y dos numeros)
+    @Pattern(regexp = "^(?=(?:\\D*\\d){2})(?=(?:[^a-z]*[a-z]){2})(?=[^A-Z]*[A-Z]).*", message = "La clave debe contener: Una Mayuscula, letras minúsculas, y dos numeros")
     private String password;
 
     private LocalDateTime createdAt;

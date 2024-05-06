@@ -4,6 +4,8 @@ import net.javaguides.usuariosapp.dto.LoginDto;
 import net.javaguides.usuariosapp.dto.PhoneDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 import net.javaguides.usuariosapp.entity.User;
+import net.javaguides.usuariosapp.exceptions.EmailExistsException;
+import net.javaguides.usuariosapp.exceptions.NotFoundException;
 import net.javaguides.usuariosapp.mapper.UserMapper;
 import net.javaguides.usuariosapp.repository.UserRepository;
 import net.javaguides.usuariosapp.service.JwtService;
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto createUser(UserDto userDto) {
         if(userRepository.findByEmail(userDto.getEmail()).isPresent())
-            throw new RuntimeException("User's email exits");
+            throw new EmailExistsException("User's email exists");
 
         userDto.setCreatedAt(LocalDateTime.now());
         userDto.setModifiedAt(LocalDateTime.now());
@@ -65,7 +67,7 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserById(UUID id) {
         User user = userRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("User does not exists"));
+                .orElseThrow(() -> new NotFoundException("User does not exists"));
 
         return userMapper.mapToUserDto(user);
     }
@@ -80,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     public boolean login(LoginDto loginDto){
         User user = userRepository.findByEmail(loginDto.getEmail())
-                .orElseThrow(() -> new RuntimeException("User's email does not exists"));
+                .orElseThrow(() -> new NotFoundException("User's email does not exists"));
         return passwordEncoder.matches( loginDto.getPassword() , user.getPassword());
     }
 
