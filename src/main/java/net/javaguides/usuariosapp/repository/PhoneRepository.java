@@ -1,7 +1,6 @@
 package net.javaguides.usuariosapp.repository;
 
 import net.javaguides.usuariosapp.entity.Phone;
-import net.javaguides.usuariosapp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

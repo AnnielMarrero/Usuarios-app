@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -30,9 +30,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    private PhoneService phoneService;
+    private final PhoneService phoneService;
 
-    private JwtService jwtService;
+    private final JwtService jwtService;
 
     public UserServiceImpl(UserRepository userRepository, PhoneService phoneService, JwtService jwtService) {
         this.userRepository = userRepository;

@@ -9,6 +9,6 @@ public class PhoneDto {
     private UUID id;
     private String number;
     private String cityCode;
-    private String contryCode;
+    private String countryCode;
     private UUID userId;
 }

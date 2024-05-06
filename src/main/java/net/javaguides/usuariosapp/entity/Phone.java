@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -24,7 +23,7 @@ public class Phone {
     private UUID id;
     private String number;
     private String cityCode;
-    private String contryCode;
+    private String countryCode;
 
     @ManyToOne
     @JoinColumn(name="userId", nullable=false)
