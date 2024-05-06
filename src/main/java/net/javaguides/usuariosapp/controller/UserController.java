@@ -1,6 +1,7 @@
 package net.javaguides.usuariosapp.controller;
 
 import jakarta.validation.Valid;
+import net.javaguides.usuariosapp.dto.LoginDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 import net.javaguides.usuariosapp.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -37,13 +38,10 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
-    /*
-    //delete users rest api
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteuser(@PathVariable Long id){
-        userService.delete(id);
-        return ResponseEntity.ok("user is deleted successfully!");
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody LoginDto loginDto){
+        return userService.login(loginDto);
     }
 
-     */
 }

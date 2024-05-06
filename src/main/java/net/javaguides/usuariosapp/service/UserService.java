@@ -1,5 +1,6 @@
 package net.javaguides.usuariosapp.service;
 
+import net.javaguides.usuariosapp.dto.LoginDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 
 import java.util.List;
@@ -12,5 +13,6 @@ public interface UserService {
 
     List<UserDto> getAllUsers();
 
+    boolean login(LoginDto loginDto);
     //void delete(UUID id);
 }

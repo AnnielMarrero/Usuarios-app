@@ -1,5 +1,6 @@
 package net.javaguides.usuariosapp.service.impl;
 
+import net.javaguides.usuariosapp.dto.LoginDto;
 import net.javaguides.usuariosapp.dto.PhoneDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 import net.javaguides.usuariosapp.entity.User;
@@ -9,7 +10,7 @@ import net.javaguides.usuariosapp.repository.UserRepository;
 import net.javaguides.usuariosapp.service.PhoneService;
 import net.javaguides.usuariosapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,10 +22,11 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserMapper userMapper;
-
 
     private PhoneService phoneService;
 
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        if(userRepository.findByEmail(userDto.getEmail()) != null)
+        if(userRepository.findByEmail(userDto.getEmail()).isPresent())
             throw new RuntimeException("User's email exits");
 
         userDto.setCreatedAt(LocalDateTime.now());
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService {
         userDto.setActive(true);
         userDto.setLastLoginAt(userDto.getCreatedAt());
         userDto.setToken("token"); //TODO generate JWT
-        userDto.setPassword(encodePassword(userDto.getPassword()));
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         User user = userMapper.mapToUser(userDto);
         User savedUser = userRepository.save(user);
@@ -73,9 +75,10 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-    public static String encodePassword(String plainPassword){
-        BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder.encode(plainPassword);
+    public boolean login(LoginDto loginDto){
+        User user = userRepository.findByEmail(loginDto.getEmail())
+                .orElseThrow(() -> new RuntimeException("User's email does not exists"));
+        return passwordEncoder.matches( loginDto.getPassword() , user.getPassword());
     }
 
 }
