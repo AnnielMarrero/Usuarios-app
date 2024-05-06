@@ -5,8 +5,8 @@ import net.javaguides.usuariosapp.dto.PhoneDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 import net.javaguides.usuariosapp.entity.User;
 import net.javaguides.usuariosapp.mapper.UserMapper;
-import net.javaguides.usuariosapp.repository.PhoneRepository;
 import net.javaguides.usuariosapp.repository.UserRepository;
+import net.javaguides.usuariosapp.service.JwtService;
 import net.javaguides.usuariosapp.service.PhoneService;
 import net.javaguides.usuariosapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,12 @@ public class UserServiceImpl implements UserService {
 
     private PhoneService phoneService;
 
-    public UserServiceImpl(UserRepository userRepository, PhoneService phoneService) {
+    private JwtService jwtService;
+
+    public UserServiceImpl(UserRepository userRepository, PhoneService phoneService, JwtService jwtService) {
         this.userRepository = userRepository;
         this.phoneService = phoneService;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class UserServiceImpl implements UserService {
         userDto.setModifiedAt(LocalDateTime.now());
         userDto.setActive(true);
         userDto.setLastLoginAt(userDto.getCreatedAt());
-        userDto.setToken("token"); //TODO generate JWT
+        userDto.setToken(jwtService.generateToken(userDto));
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         User user = userMapper.mapToUser(userDto);

@@ -9,7 +9,7 @@ public class BCryptTest {
 
     @Test
     public void encodePassword(){
-        //arreange
+        //arrange
         String rawPassword = "hola";
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
