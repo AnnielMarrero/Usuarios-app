@@ -16,7 +16,8 @@ public class UserMapper {
     }
 
     public UserDto mapToUserDto(User user){
-        user.setPassword(null);
-        return modelMapper.map(user, UserDto.class);
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        userDto.setPassword(null);
+        return userDto;
     }
 }
