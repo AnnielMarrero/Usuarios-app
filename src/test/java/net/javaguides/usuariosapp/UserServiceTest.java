@@ -1,6 +1,5 @@
 package net.javaguides.usuariosapp;
 
-import com.google.gson.Gson;
 import net.javaguides.usuariosapp.dto.PhoneDto;
 import net.javaguides.usuariosapp.dto.UserDto;
 import net.javaguides.usuariosapp.entity.User;
@@ -19,10 +18,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.util.SerializationUtils;
 
 import java.time.LocalDateTime;
 import java.util.*;
